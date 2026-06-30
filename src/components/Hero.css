@@ -1,0 +1,56 @@
+.hero {
+  background: #aabbe4;
+  padding: 80px 20px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.stamp {
+  position: absolute;
+  width: 120px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stamp1 {
+  top: 60px;
+  left: 20px;
+  transform: rotate(-12deg);
+}
+
+.stamp2 {
+  top: 30px;
+  right: 20px;
+  width: 80px;
+}
+
+.stamp3 {
+  top: 250px;
+  left: 80px;
+  width: 240px;
+  transform: rotate(-5deg);
+}
+
+.hero h3 {
+  margin-top: 350px;
+  font-style: italic;
+  color: white;
+  font-weight: 300;
+}
+
+.hero h1 {
+  margin-top: 15px;
+  font-size: 40px;
+  color: white;
+}
+
+.hero p {
+  margin-top: 40px;
+  color: white;
+}
+
+.hero span {
+  display: block;
+  margin-top: 10px;
+  color: white;
+}

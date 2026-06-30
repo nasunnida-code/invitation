@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #edf2ff;
+  font-family: "Noto Serif KR", serif;
+  color: #555;
+}
+
+.app {
+  max-width: 430px;
+  margin: auto;
+  background: white;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+section {
+  padding: 60px 25px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  text-align: center;
+  line-height: 1.8;
+}
