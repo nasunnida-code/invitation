@@ -1,0 +1,26 @@
+.share {
+  background: var(--color-bg);
+  text-align: center;
+}
+
+.share__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.share__btn {
+  padding: 13px 0;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  border-radius: 2px;
+  font-size: 13px;
+  color: var(--color-ink);
+}
+
+.share__btn--kakao {
+  background: #fee500;
+  border-color: #fee500;
+  color: #3a2b00;
+  font-weight: 500;
+}

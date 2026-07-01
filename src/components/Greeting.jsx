@@ -1,12 +1,44 @@
-export default function Greeting() {
-  return (
-    <section>
-      <h2 className="title">초대합니다</h2>
+import weddingData from '../data/weddingData'
+import useReveal from '../hooks/useReveal'
+import './Greeting.css'
 
-      <p className="subtitle">
-        평생을 함께하고 싶은 사람을 만나 소중한 분들을 모시고 새로운 시작을
-        함께하려 합니다. 귀한 걸음으로 축복해주시면 더없는 기쁨이 되겠습니다.
+export default function Greeting() {
+  const { groom, bride, greeting } = weddingData
+  const [ref, visible] = useReveal()
+
+  return (
+    <section ref={ref} className={`section greeting reveal ${visible ? 'is-visible' : ''}`}>
+      <span className="eyebrow">Invitation</span>
+      <h2 className="section-title">{greeting.title}</h2>
+
+      <p className="greeting__message">
+        {greeting.message.split('\n').map((line) => (
+          <span key={line}>
+            {line}
+            <br />
+          </span>
+        ))}
       </p>
+
+      <div className="divider" />
+
+      <div className="greeting__parents">
+        <p>
+          {groom.fatherName} · {groom.motherName}의 아들 <strong>{groom.name}</strong>
+        </p>
+        <p>
+          {bride.fatherName} · {bride.motherName}의 딸 <strong>{bride.name}</strong>
+        </p>
+      </div>
+
+      <div className="greeting__contacts">
+        <a className="greeting__contact-btn" href={`tel:${groom.phone}`}>
+          신랑에게 연락
+        </a>
+        <a className="greeting__contact-btn" href={`tel:${bride.phone}`}>
+          신부에게 연락
+        </a>
+      </div>
     </section>
-  );
+  )
 }

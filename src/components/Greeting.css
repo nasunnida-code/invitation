@@ -1,0 +1,46 @@
+.greeting {
+  text-align: center;
+  background: var(--color-bg);
+}
+
+.greeting__message {
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--color-ink);
+  font-weight: 300;
+}
+
+.greeting__parents {
+  font-size: 13.5px;
+  color: var(--color-sub);
+  line-height: 1.8;
+}
+
+.greeting__parents strong {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+.greeting__contacts {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.greeting__contact-btn {
+  flex: 1;
+  max-width: 150px;
+  padding: 11px 0;
+  border: 1px solid var(--color-line);
+  border-radius: 2px;
+  font-size: 12.5px;
+  color: var(--color-ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease;
+}
+
+.greeting__contact-btn:active {
+  background: var(--color-surface);
+}

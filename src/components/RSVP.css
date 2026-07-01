@@ -1,0 +1,47 @@
+.rsvp {
+  background: var(--color-bg);
+  text-align: center;
+}
+
+.rsvp__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.rsvp__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-sub);
+}
+
+.rsvp__field input,
+.rsvp__field select {
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--color-ink);
+  padding: 10px 10px;
+  border: 1px solid var(--color-line);
+  border-radius: 2px;
+  background: var(--color-surface);
+}
+
+.rsvp__submit {
+  margin-top: 8px;
+  padding: 13px 0;
+  background: var(--color-ink);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  font-size: 13.5px;
+  letter-spacing: 0.05em;
+}
+
+.rsvp__done {
+  font-size: 13.5px;
+  color: var(--color-sub);
+  line-height: 1.8;
+}

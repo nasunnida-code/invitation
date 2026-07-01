@@ -1,16 +1,83 @@
-# React + Vite
+# 모바일 청첩장 (Mobile Wedding Invitation)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## 1. 프로젝트 주제
 
-Currently, two official plugins are available:
+세로형 모바일 화면에 최적화된 **웨딩 청첩장 웹앱**입니다.
+레퍼런스 이미지의 톤(웜 크림 배경 + 얇은 세리프 타이포 + "05 / 20" 형태의 큰 날짜 조판)을 기준으로,
+사진이 주인공이 되는 미니멀한 구조 위에 실제 청첩장에 필요한 정보/기능을 얹은 형태로 설계했습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 첫 화면(Hero): 전신 사진 위에 이름 · 날짜만 절제된 타이포로 배치
+- 이름/날짜/장소 요약 블록: 참고 이미지 하단부와 동일하게 "이름 — 05/20 — 이름" 조판 + 예식 정보 한 줄
+- 그 아래로 인사말, 캘린더(D-Day), 갤러리, 오시는길, 마음 전하실 곳(계좌번호), 참석 의사 전달, 공유하기 순으로 스크롤
 
-## React Compiler
+## 2. 디자인 토큰
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| 항목 | 값 | 비고 |
+|---|---|---|
+| 배경 (cream) | `#F7F3EC` | 참고 이미지의 웜 아이보리 배경 |
+| 카드/화이트 | `#FFFFFF` | 사진 프레임, 카드 배경 |
+| 텍스트 (ink) | `#3A332C` | 짙은 브라운-블랙, 순수 검정 대신 사용 |
+| 서브 텍스트 | `#9C9184` | 보조 문구, 캡션 |
+| 포인트 (dusty rose) | `#C7A99A` | 부케 톤에서 추출한 로즈-베이지 |
+| 라인 | `#E4DCCF` | 얇은 구분선 (1px) |
+| 디스플레이 서체 | `Noto Serif KR` | 이름 · 큰 날짜 숫자 |
+| 본문 서체 | `Pretendard` | 안내 문구, 정보 텍스트 |
 
-## Expanding the Oxlint configuration
+시그니처 요소는 참고 이미지에 이미 존재하는 **"05 ⁄ 20" 분수 형태의 큰 날짜 조판**을 그대로 계승하여,
+Hero 하단 정보 블록과 캘린더 섹션에서 반복 사용해 통일감을 줍니다.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 3. 폴더 구조
+
+```
+wedding-invitation/
+├─ index.html
+├─ package.json
+├─ vite.config.js
+├─ public/
+│  └─ images/            # 실제 웨딩 사진을 넣는 곳 (main.jpg, gallery-1.jpg ...)
+└─ src/
+   ├─ main.jsx
+   ├─ App.jsx
+   ├─ index.css          # 디자인 토큰(CSS 변수) + 전역 스타일
+   ├─ data/
+   │  └─ weddingData.js  # 신랑/신부 이름, 날짜, 장소, 계좌 등 모든 정보를 한 곳에서 관리
+   └─ components/
+      ├─ Hero.jsx / Hero.css               # 첫 화면 사진 + 이름/날짜 오버레이
+      ├─ InfoBlock.jsx / InfoBlock.css     # 참고 이미지 하단부 (이름-05/20-이름, 예식 정보)
+      ├─ Greeting.jsx / Greeting.css       # 모시는 글(인사말) + 혼주 정보
+      ├─ Calendar.jsx / Calendar.css       # 달력 + D-Day 카운트
+      ├─ Gallery.jsx / Gallery.css         # 사진 그리드 + 확대 보기(라이트박스)
+      ├─ Location.jsx / Location.css       # 지도 임베드 + 주소 복사 + 교통 안내
+      ├─ Account.jsx / Account.css         # 마음 전하실 곳 (계좌번호 아코디언 + 복사)
+      ├─ RSVP.jsx / RSVP.css               # 참석 의사 전달 폼
+      ├─ Share.jsx / Share.css             # 카카오톡 공유 / 링크 복사
+      └─ Footer.jsx / Footer.css           # 맺음말, 저작권
+```
+
+## 4. 구현된 기능
+
+1. **Hero 섹션** — 배경 전신 사진, 얇은 흰색 이너 보더 프레임, 중앙 정렬 이름/날짜 (참고 이미지 1:1 재현)
+2. **InfoBlock** — "신랑이름 05⁄20 신부이름" + "2023.5.20 SAT. 1:30 PM" + 예식장 한 줄 요약
+3. **Greeting** — 모시는 글 문구, 혼주(부모님) 성함, 신랑/신부 연락처 아이콘 버튼(전화·문자)
+4. **Calendar** — 예식 월 달력에 예식일 하이라이트 + 실시간 D-Day 계산
+5. **Gallery** — 반응형 정사각 그리드, 탭하면 전체화면 라이트박스로 넘기기 가능
+6. **Location** — 지도(카카오/네이버 지도 iframe 자리 표시), 주소 복사 버튼, 지하철/버스/주차 안내 탭
+7. **Account** — 신랑측/신부측 아코디언, 계좌번호 클립보드 복사, 복사 완료 토스트
+8. **RSVP** — 참석 여부·인원·식사 여부 선택 후 제출(현재는 로컬 상태 처리, 백엔드 연동 지점 주석으로 표시)
+9. **Share** — 카카오톡 공유하기 버튼(SDK 연동 지점 주석), 링크 복사 버튼
+10. **공통** — 스크롤 시 섹션별 fade-up 등장 애니메이션(모션 최소화, `prefers-reduced-motion` 대응), 모바일 우선 반응형(최대 너비 480px 중앙 정렬)
+
+## 5. 커스터마이징 방법
+
+모든 텍스트/사진/연락처/계좌번호는 `src/data/weddingData.js` 한 파일만 수정하면 전체 페이지에 반영됩니다.
+실제 사진은 `public/images/` 폴더에 넣고 파일명을 `weddingData.js`의 경로와 맞춰주세요.
+
+## 6. 실행 방법
+
+```bash
+npm install
+npm run dev
+```
+
+지도/카카오 공유하기는 실제 서비스 키(카카오 JavaScript 키, 지도 API 키)가 필요한 부분이라
+해당 컴포넌트 안에 `// TODO: API 키 입력` 주석으로 표시해두었습니다.

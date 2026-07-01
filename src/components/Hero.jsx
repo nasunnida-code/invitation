@@ -1,21 +1,21 @@
-import "./Hero.css";
+import weddingData from '../data/weddingData'
+import './Hero.css'
 
 export default function Hero() {
+  const { groom, bride, wedding, heroImage } = weddingData
+
   return (
     <section className="hero">
-      <img src="/images/stamp1.png" className="stamp stamp1" />
-
-      <img src="/images/stamp2.png" className="stamp stamp2" />
-
-      <img src="/images/stamp3.png" className="stamp stamp3" />
-
-      <h3>A Letter from</h3>
-
-      <h1>기준, 소영</h1>
-
-      <p>2025.10.18 SAT PM 02:30</p>
-
-      <span>메종 드 프리미어 그랜드홀</span>
+      <div className="hero__frame">
+        <img className="hero__photo" src={heroImage} alt={`${groom.name} ${bride.name} 웨딩 사진`} />
+        <div className="hero__inner-border" aria-hidden="true" />
+      </div>
+      <div className="hero__caption">
+        <p className="hero__names">
+          {groom.name} <span className="hero__amp">&</span> {bride.name}
+        </p>
+        <p className="hero__date">{wedding.dateLabel}</p>
+      </div>
     </section>
-  );
+  )
 }
