@@ -34,14 +34,14 @@ const weddingData = {
       "두 사람이 함께 걸어갈 새로운 시작에\n소중한 분들을 모시고 싶습니다.\n바쁘시더라도 오셔서\n따뜻한 마음으로 축복해 주시면\n큰 힘이 되겠습니다.",
   },
   gallery: [
-    "../public/images/gallery-1.png",
-    "../public/images/gallery-2.png",
-    "../public/images/gallery-3.png",
-    "../public/images/gallery-4.png",
-    "../public/images/gallery-5.png",
-    "../public/images/gallery-6.png",
+    "/images/gallery-1.png",
+    "/images/gallery-2.png",
+    "/images/gallery-3.png",
+    "/images/gallery-4.png",
+    "/images/gallery-5.png",
+    "/images/gallery-6.png",
   ],
-  heroImage: "../public/images/main.png",
+  heroImage: "/images/main.png",
   location: {
     mapEmbedUrl: "", // TODO: 카카오/네이버 지도 iframe URL 입력
     transit: [
